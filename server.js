@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000; // configure for heroku and local
 
 // create alias for express()
 const app = express();
@@ -25,6 +26,11 @@ app.use((req,res,next)=> {
 // });
 
 app.use(express.static(__dirname + '/public'));
+
+
+
+
+
 
 // setup helper for the year
 hbs.registerHelper('getCurrentYear', ()=> {
@@ -60,6 +66,6 @@ app.get('/bad', (req, res) => {
 
 
 // start the server on port 3000
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
